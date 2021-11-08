@@ -32,7 +32,7 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal 
+      run: dotnet test --no-build --verbosity normal tests/UnitTests/UnitTests.csproj
     - name: create issue
       if: failure()
       run: |
