@@ -11,10 +11,6 @@ on:
 env:
   IMAGE_VERSION: '1.0'
 
-defaults:
-  run:
-    working-directory: apis/poi/web
-
 jobs:
 
   build:
@@ -37,6 +33,6 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          context: .
+          context: ./apis/poi/web
           push: true
           tags: anmopenhack.azurecr.io/openhack/poi:${{ env.IMAGE_VERSION }}.${{ github.run_number }}
