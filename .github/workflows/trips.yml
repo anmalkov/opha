@@ -32,7 +32,8 @@ jobs:
     - name: Build
       run: go build -v
     - name: Test
-      run: go test -v ./tripsgo
+      run: go test -v
+      #run: go test -v ./tripsgo
     - name: create issue
       if: failure()
       run: |
