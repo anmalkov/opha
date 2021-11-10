@@ -30,7 +30,7 @@ jobs:
     - name: Get dependencies
       run: go get
     - name: Build
-      run: go build -v apis/trips
+      run: go build -v
     - name: Test
       run: go test -v ./tripsgo
     - name: create issue
