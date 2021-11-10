@@ -40,4 +40,4 @@ jobs:
         with:
           context: ./apis/poi/web
           push: true
-          tags: anmopenhack.azurecr.io/openhack/poi:${{ env.IMAGE_VERSION }}.${{ env.GITHUB_RUN_ID }}
+          tags: anmopenhack.azurecr.io/openhack/poi:${{ env.IMAGE_VERSION }}.${{ github.run_number }}
