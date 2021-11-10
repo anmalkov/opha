@@ -39,4 +39,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: anmopenhack.azurecr.io/openhack/poi:${{ env.IMAGE_VERSION }}.$GITHUB_RUN_NUMBER
+          tags: anmopenhack.azurecr.io/openhack/poi:${{ env.IMAGE_VERSION }}.${{ GITHUB_RUN_NUMBER }}
