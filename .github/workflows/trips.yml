@@ -1,0 +1,40 @@
+name: Trips
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'apis/trips/**'
+      - '.github/workflows/trips.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'apis/trips/**'
+      - '.github/workflows/trips.yml'
+
+jobs:
+  build_test:
+
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: 'apis/trips'
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.17
+    - name: Build
+      run: go build -v
+    - name: Test
+      run: go test -v
+    - name: create issue
+      if: failure()
+      run: |
+        body=$'${{ env.build_name }} Worflow Failure \n Build Number: ${{ github.run_number }} \n Build Log: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }} \n SHA: [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})\n'
+        gh issue create --title "${{ env.build_name }} Workflow ${{ github.run_number }} Failed!" --body "$body"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
